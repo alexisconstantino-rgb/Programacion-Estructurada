@@ -1,0 +1,301 @@
+\documentclass[12pt]{article}
+
+% Idioma y codificación
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+
+% Márgenes
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+% Paquetes útiles
+\usepackage{graphicx} % Imágenes
+\usepackage{listings} % Código
+\usepackage{xcolor}
+
+% Configuración para código en C
+\lstset{
+    language=C,
+    basicstyle=\ttfamily\small,
+    numbers=left,
+    numberstyle=\tiny,
+    frame=single,
+    breaklines=true
+}
+
+\begin{document}
+
+% ---------- PORTADA ----------
+\begin{titlepage}
+    \centering
+    \vspace*{4cm}
+    
+    {\Large \textbf{Programación Estructurada}}\\[1cm]
+    {\large Práctica No. 1}\\[2cm]
+    
+    {\large Alexis Roberto Constantino Núñez}\\
+    {\large Grupo 531}\\[1cm]
+    
+    {\large \today}
+\end{titlepage}
+
+% ---------- PROBLEMA 1 ----------
+\section{Problema 1, 2 y 3}
+
+\subsection{Explicación del código}
+%Aquí va una breve explicación del programa realizado en lenguaje C.  
+%Máximo 5 líneas explicando qué hace el programa y cómo funciona.
+En el actual programa se resuelven cada uno de los 3 problemas presentados en la práctica No 1, para resolver cada problema se elaboro una misma metodología, la cual consistía en identificar entradas (datos que el usuario del programa escribiría), salidas (datos que el programa devolvería) y algoritmos que darian solucion al problema planteado; Como se vera a continuacion por cada problema se plasmaron comentarios antes de la implementacion de cada problema, asi como tambien para las salidas. En cuanto al algoritmo que solventa cada uno de los problemas estan separados por comentarios con la trascripcion "Programa de la N opcion.". En cuanto a las opciones son 3, las mismas que se presentan en la función principal llamada "Main", es esta misma fución la que se encarga de poner a disposicion las 3 funciones que resolveran cada uno de los problemas presentados por las actividades, las funciones tienen por nombre: loseta, rampa y juanita. La funcion "Main" es la que se encargara constantemente de mostrar en pantalla que actividad se quiere elaborar ademas de la respectiva ejecucion de las funciones solicitadas, esta misma función muestra ademas el menu que el usuario tendra a su disposicion y una opcion que permitira finalizar la ejecucion total del programa. 
+\subsection{Código completo del programa.}
+\begin{lstlisting}
+
+#include <stdio.h>
+#include <math.h>
+//prototipos programa1
+void loseta (void);
+int cantcajas (float medida1, float medida2);
+//prototipos programa2
+void rampa (void);
+float calculo (float med1, float med2);
+//prototipos programa2
+void juanita (void);
+float sueldo (float hrs, char empleo);
+float horas (void);
+//funcion principal
+int main (void)
+{
+        int opc;
+        do{
+                printf("\t\tMENU PRINCIPAL\n");
+                printf("\nOpcion 1: Costo de una loseta.\nOpcion 2: Determinar el largo de una rampa.\nOpcion 3: Determinar el sueldo de Juanita.\nOpcion 4: Salir del programa.\n"); 
+                scanf(" %d", &opc);
+                switch (opc)
+                {
+                        case 1:
+                                loseta();
+                                break;
+                        case 2:
+                                rampa();
+                                break;
+                        case 3:
+                                juanita();
+                                break;
+                        case 4:
+                                printf("Saliendo...\n");
+                                break;
+                }
+        }while(opc != 4);
+        return 0;
+}
+//funciones secundarias
+/*Programa de la primera opcion.
+ *entradas: medidas de la habitacion
+ *salidas: cantidad de cajas y precio total a pagar*/
+void loseta (void)
+{
+        const float PRECIO = 452.5;
+        float largo, ancho;
+        int cajas=0;
+        float precio; 
+        printf("Calculo del costo que tendra un piso de loseta.\n");
+        printf("Cual es el largo de la habitacion: \n"); scanf(" %f", &largo);
+        printf("Cual es el ancho de la habitacion: \n"); scanf(" %f", &ancho);
+        cajas = cantcajas (largo, ancho);
+        precio = cajas * PRECIO;
+        printf("\tLas cajas necesarias para estas medidas son: %d\n", cajas);
+        printf("\tEl precio Total a pagar por las cajas es: %.3f\v", precio);
+}
+int cantcajas (float medida1, float medida2)
+{
+        const int CAJA = 4;
+        int cantidad;
+        float area;
+        area = medida1 * medida2;
+        cantidad = area / CAJA + 1;
+        return cantidad;
+}
+/*Programa de la segunda opcion.
+ *entradas: altura, base
+ *salida: hipotenusa*/
+void rampa (void)
+{
+        float base, altura, largo;
+        printf("Calculo del largo de una rampa.\n");
+        printf("Cual es el largo de la base: \n"); scanf(" %f", &base);
+        printf("Cual es el largo de la altura: \n"); scanf(" %f", &altura);
+        largo = calculo (base, altura);
+        printf("\tEl largo de la rampa es: %.3f\v", largo);
+
+}
+float calculo (float med1, float med2)
+{
+        float aux, hipsa;
+        aux = med1*med1 + med2*med2;
+        hipsa = pow(aux, 0.5);
+        return hipsa;
+}
+/*Programa de la tercera opcion.
+ *entradas: horas trabajadas 
+ *salida: sueldo*/
+void juanita (void)
+{
+        float horaxdia[6];
+	char empleo[6];
+        float total = 0;
+        printf("Calculo del sueldo semanal de Juanita.\n");
+        for(int i=0; i<6;i++){
+                printf("Cuantas horas trabajo el dia %d:\n", i+1);
+                horaxdia[i] = horas();
+                printf("Si la entrada alfabetica no corresponde, el resultado de ese dia sera 0\n");
+                printf("En que empleo ? (A, B, C o D) \n");
+		scanf(" %c", &empleos[i]);
+		total += sueldo(horaxdia[i], empleos[i]);
+
+        }
+        for(int i=0; i<6;i++){
+		printf("\tEl sueldo del dia %d es: %.2f\n", i+1, sueldo(horaxdia[i], empleos[i]));
+        }
+        printf("\tEl pago debera ser de: %.3f\v", total);
+}
+float sueldo (float horas, char empleo)
+{
+        float trabajo[] = {3.2, 4.1, 3.8, 2.95};
+        float sueldo = 0;
+        switch (empleo){
+                case 'A':
+                case 'a':
+                        sueldo = horas * trabajo[0];
+                        break;
+                case 'B':
+                case 'b':
+                        sueldo = horas * trabajo[1];
+                        break;
+                case 'C':
+                case 'c':
+                        sueldo = horas * trabajo[2];
+                        break;
+                case 'D':
+                case 'd':
+                        sueldo = horas * trabajo[3];
+                        break;
+        }
+        return sueldo;
+}
+float horas (void)
+{
+        float aux;
+        do{
+                scanf(" %f", &aux);
+                if(aux < 0 || aux > 12)
+                        printf("Valor fuera de rango. Reintente:\n");
+        }while(aux < 0 || aux > 12);
+        return aux;
+}
+
+\end{lstlisting}
+
+\subsection{Capturas de entrada y salida de la Opcion 1 (loseta). }
+\begin{verbatim}
+ MENU PRINCIPAL
+
+Opcion 1: Costo de una loseta.
+Opcion 2: Determinar el largo de una rampa.
+Opcion 3: Determinar el sueldo de Juanita.
+Opcion 4: Salir del programa.
+
+1
+
+Calculo del costo que tendra un piso de loseta.
+Cual es el largo de la habitacion: 
+55
+Cual es el ancho de la habitacion: 
+77.8
+        Las cajas necesarias para estas medidas son: 1070
+        El precio Total a pagar por las cajas es: 484175.000
+                                                        
+\end{verbatim}
+
+\subsection{Capturas de entrada y salida de la opcion 2 (rampa).}
+\begin{verbatim}
+MENU PRINCIPAL
+
+Opcion 1: Costo de una loseta.
+Opcion 2: Determinar el largo de una rampa.
+Opcion 3: Determinar el sueldo de Juanita.
+Opcion 4: Salir del programa.
+2       
+Calculo del largo de una rampa.
+Cual es el largo de la base: 
+77.8
+Cual es el largo de la altura: 
+55
+        El largo de la rampa es: 85.463
+
+\end{verbatim}
+
+\subsection{Capturas de entrada y salida de la opcion 3 (juanita)}
+\begin{verbatim}
+MENU PRINCIPAL
+
+Opcion 1: Costo de una loseta.
+Opcion 2: Determinar el largo de una rampa.
+Opcion 3: Determinar el sueldo de Juanita.
+Opcion 4: Salir del programa.
+3
+Calculo del sueldo semanal de Juanita.
+Cuantas horas trabajo el dia 1:
+5
+Si la entrada alfabetica no corresponde, el resultado de ese dia sera 0
+En que empleo ? (A, B, C o D) 
+a
+Cuantas horas trabajo el dia 2:
+9
+Si la entrada alfabetica no corresponde, el resultado de ese dia sera 0
+En que empleo ? (A, B, C o D) 
+c
+Cuantas horas trabajo el dia 3:
+5
+Si la entrada alfabetica no corresponde, el resultado de ese dia sera 0
+En que empleo ? (A, B, C o D) 
+a
+Cuantas horas trabajo el dia 4:
+12
+Si la entrada alfabetica no corresponde, el resultado de ese dia sera 0
+En que empleo ? (A, B, C o D) 
+c
+Cuantas horas trabajo el dia 5:
+0
+Si la entrada alfabetica no corresponde, el resultado de ese dia sera 0
+En que empleo ? (A, B, C o D) 
+a
+Cuantas horas trabajo el dia 6:
+10
+Si la entrada alfabetica no corresponde, el resultado de ese dia sera 0
+En que empleo ? (A, B, C o D) 
+d
+        El sueldo del dia 1 es: 16.00
+        El sueldo del dia 2 es: 34.20
+        El sueldo del dia 3 es: 16.00
+        El sueldo del dia 4 es: 45.60
+        El sueldo del dia 5 es: 0.00
+        El sueldo del dia 6 es: 29.50
+        El pago debera ser de: 141.300
+
+\end{verbatim}
+
+% ---------- CONCLUSIÓN ----------
+\section{Conclusión}
+
+En la presente práctica se aplicaron los fundamentos de la programación estructurada
+utilizando el lenguaje C, implementando funciones, estructuras de control y validación
+de datos para resolver distintos problemas planteados. Se reforzó el uso de la función
+principal (Main) como controlador del flujo del programa mediante un menú interactivo,
+así como la modularización del código para mejorar su organización y claridad.
+
+Además, se fortaleció la lógica de programación al identificar correctamente entradas,
+procesos y salidas en cada ejercicio. Finalmente, la elaboración del reporte
+permitió presentar el trabajo de manera formal y estructurada, facilitando la
+documentación profesional del desarrollo del software.
+
+\end{document}
+

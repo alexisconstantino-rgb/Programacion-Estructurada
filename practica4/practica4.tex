@@ -1,0 +1,307 @@
+\documentclass[12pt]{article}
+
+% Idioma y codificación
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+
+% Márgenes
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+% Paquetes útiles
+\usepackage{graphicx} % Imágenes
+\usepackage{listings} % Código
+\usepackage{xcolor}
+
+% Configuración para código en C
+\lstset{
+    language=C,
+    basicstyle=\ttfamily\small,
+    numbers=left,
+    numberstyle=\tiny,
+    frame=single,
+    breaklines=true
+}
+
+\begin{document}
+
+% ---------- PORTADA ----------
+\begin{titlepage}
+    \centering
+    \vspace*{4cm}
+    
+    {\Large \textbf{Programación Estructurada}}\\[1cm]
+    {\large Práctica No. 4}\\[2cm]
+    
+    {\large Alexis Roberto Constantino Núñez}\\
+
+    {\large Matricula: 2201619}\\
+    {\large Grupo 531}\\[1cm]
+    
+    {\large \today}
+\end{titlepage}
+
+% ---------- PROBLEMA 1 ----------
+\section{Problema 1}
+
+\subsection{Enunciado del problema}
+%Aquí va una breve explicación del programa realizado en lenguaje C.  
+Dise\~{n}e e implemente un programa basado en p\'{a}rametros por referencia que convierta una cantidad en pesos a yenes, d\'{o}lares, libras esterlinas y euros.
+\subsection{Especificación de las entradas y salidas}
+Entradas: Cantidad de pesos a convertir.\\
+Salidas: Cantidad equivalente a la conversi\'{o}n.
+\subsection{Algoritmo del programa}
+\begin{verbatim}
+PREGUNTAR a que moneda quiere convertir
+PREGUNTAR la cantidad de pesos a convertir
+CALCULAR la conversion deacuerdo a la opcion y la cantidad de pesos
+IMPRIMIR el resultado de la conversion
+\end{verbatim}
+\subsection{Pruebas de escritorio }
+\begin{verbatim}
+[1] Conversor de moneda
+[2] Encuesta de vacunacion
+[3] Calculo de finiquito
+[4] Salir
+1
+Conversion de:
+[1] Pesos a Yenes
+[2] Pesos a Dolares
+[3] Pesos a Libras Esterlinas
+[4] Pesos a Euros
+1
+Ingrese pesos
+17.5
+Res: 159.0909
+Conversion de:
+[1] Pesos a Yenes
+[2] Pesos a Dolares
+[3] Pesos a Libras Esterlinas
+[4] Pesos a Euros
+2
+Ingrese pesos
+17.9
+Res: 1.0176
+Conversion de:
+[1] Pesos a Yenes
+[2] Pesos a Dolares
+[3] Pesos a Libras Esterlinas
+[4] Pesos a Euros
+3
+Ingrese pesos
+19
+Res: 0.8075
+Conversion de:
+[1] Pesos a Yenes
+[2] Pesos a Dolares
+[3] Pesos a Libras Esterlinas
+[4] Pesos a Euros
+4
+Ingrese pesos
+43.2
+Res: 2.1094
+[1] Conversor de moneda
+[2] Encuesta de vacunacion
+[3] Calculo de finiquito
+[4] Salir
+4
+Saliendo...
+\end{verbatim}
+% ---------- PROBLEMA 2 ----------
+\section{Problema 2}
+
+\subsection{Enunciado del problema}
+%Aquí va una breve explicación del programa realizado en lenguaje C.  
+En el cruce peatonal de una frontera se realiz\'{o} una encuesta sobre vacunaci\'{o}n a 500 personas y se les pregunt\'{o} sobre vacunaci\'{o}n. Dise\~{n}e una funci\'{o}n mediante un ciclo que lea las respuestas de las encuestas y regrese mediante par\'{a}metros por referencia la cantidad de vacunas aplicadas de cada tipo 1. J&J, 2. Cansino, #. AstraZeneca, 4.Pfizer 5.No se vacun\'{o}.
+\subsection{Especificación de las entradas y salidas}
+Entradas: Ninguna, la lista frue creada artificialmente.\\
+Salidas: El conteo correspondiente de la lista.
+\subsection{Algoritmo del programa}
+\begin{verbatim}
+CREAR lista con N cantidad de valores
+IMPRIMIR el conteo de la lista creada
+\end{verbatim}
+\subsection{Pruebas de escritorio }
+\begin{verbatim}
+Encuesta de Vacunacion a N personas
+
+Datos   Cantidad
+ --------------
+   1    1
+   2    1
+   3    2
+   4    2
+   5    3
+ 
+\end{verbatim}
+%-----------------Problema 3---------------------
+\section{Problema 3}
+
+\subsection{Enunciado del problema}
+El finiquito corresponde al pago de las prestaciones que se establecen en la ley Federal de Trabajo, se otorga al presentarse una renuncia por parte del trabajador. Las prestaciones son: 
+
+A. Aguinaldo: Corresponden 15 d\'{i}as por a\~{n}o trabajado, para calcular la parte proporcional por d\'{i}a se divide 15/365 y eso se multiplica por los d\'{i}as trabajados y el sueldo diario.
+
+B. Vacaciones: Corresponden 6 d\'{i}as por a\~{n}o trabajado, para calcular la parte proporcional por d\'{i}a se divide 6/365 y eso se multiplica por los d\'{i}as trabajados, esto representa los d\'{i}as que le corresponden de vacaciones. La prima vacacional se obtiene multiplicando los d\'{i}as de vacaciones por el sueldo diario y calculando el 25 porciento del resultado anterior.
+\subsection{Especificacion de las entradas y salidas}
+Entradas: Salario diario y Dias trabajados\\ 
+Salidas: Dias de aguinaldo y de vacaciones, Cantidad moneraria del aguinaldo y vacaciones, Finiquito.
+\subsection{Algoritmo del programa}
+\begin{verbatim}
+
+\end{verbatim}
+\subsection{Pruebas de escritorio}
+\begin{verbatim}
+PREGUNTAR sueldo diario
+PREGUNTAR dias trabajados
+CALCULAR dias de aguinaldo: dias trabajados * 15/365
+CALCULAR aguinaldo: dias de aguinaldo * sueldo diario
+CALCULAR dias de vacaciones: dias trabajados * 6/365
+CALCULAR prima vacacional: dias de vacaciones * sueldo * 0.25
+CALCULAR finiquito: aguinaldo + primavacacional
+IMPRIMIR dias aguinaldo y aguinaldo
+IMPRIMIR dias de vacaciones y primavacacional
+IMPRIMIR finiquito
+\end{verbatim}
+%-----------------Implementacion en C---------------------
+\subsection{Implementacion del algoritmo en C}
+\begin{lstlisting}
+#include <stdio.h>
+//prototipos
+/*Problema 1*/
+void conversion (void);
+void conversor (int opc, float *input);
+/*Problema 2*/
+void encuesta (void);
+void conteo (int datos[], int opciones[]);
+/*Problema 3*/
+void pago (void);
+void calAguinaldo (float dias, float sueldo, float *diasagui, float *aguinaldo);
+void calPrimaVac (float dias, float sueldo, float *diasvac, float *primavac);
+//main
+int main(void)
+{
+        int opc=0;
+        do{
+                printf("[1] Conversor de moneda\n[2] Encuesta de vacunacion\n[3] Calculo de finiquito\n[4] Salir\n");//menu
+                scanf(" %d", &opc);
+                switch(opc)
+                {
+                        case 1:
+                                printf("Conversion de:\n");
+                                conversion();
+                                break;
+                        case 2:
+                                printf("Encuesta de Vacunacion a N personas\n");
+                                encuesta();
+                                break;
+                        case 3:
+                                printf("Calculo de finiquito\n");
+                                pago();
+                                break;
+                        case 4:
+                                printf("Saliendo...\n");
+                                break;
+                        default: printf("Invalid section\n");
+                }
+        }while(opc != 4);
+        return 0;
+}
+//Problema 1: Conversion de monedas
+void conversion (void)
+{
+        int opc;
+        float input=0;
+
+        printf("[1] Pesos a Yenes\n[2] Pesos a Dolares\n[3] Pesos a Libras Esterlinas\n[4] Pesos a Euros\n");
+        scanf("%d", &opc);//opciones
+        printf("Ingrese pesos\n"); scanf(" %f", &input);
+        conversor(opc, &input);
+        printf("Res: %.4f\n", input);
+}
+void conversor (int opc, float *input)
+{
+        const float YEN=0.11;
+        const float DLL=17.59;
+        const float LBE=23.53;
+        const float EUR=20.48;
+        switch(opc)
+        {
+                        case 1:
+                                *input = *input / YEN;
+                                break;
+                        case 2:
+                                *input = *input / DLL;
+                                break;
+                        case 3:
+                                *input = *input / LBE;
+                                break;
+                        case 4:
+                                *input = *input / EUR;
+                                break;
+        }
+}
+//Problema 2: Encuesta de vacunacion
+#define PERSONAS 10
+#define OPC 5
+void encuesta (void)
+{
+        int datos[PERSONAS] = {5, 3 ,4, 5, 5, 1, 4, 3, 2}; // posibles valores: {1, 2, 3, 4, 5}
+        int opciones[OPC]={0};
+
+        conteo (datos, opciones);
+
+        printf("Datos\tCantidad\n --------------\n");
+        for(int i=0; i<OPC; i++)
+        {
+                printf("   %d\t%d\n", i+1, opciones[i]);
+        }
+}
+void conteo (int datos[], int opciones[])
+{
+        for(int i=0; i<PERSONAS; i++)
+        {
+                switch (datos[i])
+                {
+                        case 1: opciones[0] ++; break;
+                        case 2: opciones[1] ++; break;
+                        case 3: opciones[2] ++; break;
+                        case 4: opciones[3] ++; break;
+                        case 5: opciones[4] ++; break;
+                        default: printf("Opcion Invalida.\n");
+                }
+        }
+
+}
+//Problema 3: Calculo de finiquito
+void pago (void)
+{
+        float dias;
+        float sueldo, diasvac, diasagui;
+        float aguinaldo, primavac, finiquito;
+        aguinaldo=primavac=finiquito=diasvac=0;
+        printf("Ingrese sueldo diario:\n"); scanf(" %f", &sueldo);//sueldo
+        printf("Ingrese dias trabajados\n"); scanf(" %f", &dias);//dias
+        calAguinaldo(dias, sueldo, &diasagui, &aguinaldo);
+        calPrimaVac (dias, sueldo, &diasvac, &primavac);
+        printf("Aguinaldo:\t %.4f dias.\t=\t%.4f pesos.\n", diasagui, aguinaldo);
+        printf("Vacaciones:\t %.4f dias.\t=\t%.4f pesos.\n", diasvac, primavac);
+        finiquito = aguinaldo + primavac;
+        printf("Finiquito: %.4f\n", finiquito);
+}
+void calAguinaldo (float dias, float sueldo, float *diasagui, float *aguinaldo)
+{
+        *diasagui = dias * 15/365;
+        *aguinaldo = *diasagui * sueldo;
+}
+void calPrimaVac (float dias, float sueldo, float *diasvac, float *primavac)
+{
+        *diasvac = dias * 6/365;
+        *primavac = *diasvac * sueldo;//(*diasvac * sueldo) * 0.25;
+}
+\end{lstlisting}
+
+
+
+\end{document}
+

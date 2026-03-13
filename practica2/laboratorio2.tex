@@ -1,0 +1,191 @@
+\documentclass[12pt]{article}
+
+% Idioma y codificación
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+
+% Márgenes
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+% Paquetes útiles
+\usepackage{graphicx} % Imágenes
+\usepackage{listings} % Código
+\usepackage{xcolor}
+
+% Configuración para código en C
+\lstset{
+    language=C,
+    basicstyle=\ttfamily\small,
+    numbers=left,
+    numberstyle=\tiny,
+    frame=single,
+    breaklines=true
+}
+
+\begin{document}
+
+% ---------- PORTADA ----------
+\begin{titlepage}
+    \centering
+    \vspace*{4cm}
+    
+    {\Large \textbf{Programación Estructurada}}\\[1cm]
+    {\large Práctica No. 2}\\[2cm]
+    
+    {\large Alexis Roberto Constantino Núñez}\\
+		
+    {\large Matricula: 2201619}\\
+    {\large Grupo 531}\\[1cm]
+    
+    {\large \today}
+\end{titlepage}
+
+% ---------- PROBLEMA 1 ----------
+\section{Problema 1}
+
+\subsection{Enunciado del problema}
+%Aquí va una breve explicación del programa realizado en lenguaje C.  
+%Máximo 5 líneas explicando qué hace el programa y cómo funciona.
+Suponga que existe un terreno cuyo ancho es tres veces mayor que el largo. Se pide
+diseñe e implemente un algoritmo que lea solo el ancho del terreno y con ese dato
+calcule el perímetro y el área del terreno.
+\subsection{Especificación de las entradas y salidas}
+Entradas: Ancho del terreno.\\
+Salidas: Perímetro y Área del terreno.
+\subsection{Algoritmo del programa}
+\begin{verbatim}
+PREGUNTAR ancho
+CALCULAR LARGO l = ancho / 3
+CALCULAR ÁREA a = ancho * largo
+CALCULAR PERÍMETRO p = 2 * (ancho + largo)
+IMPRIMIR área y perímetro
+\end{verbatim}
+\subsection{Pruebas de escritorio }
+\begin{verbatim}
+  MENU
+Opcion 1: Calcular el area y perimetro de un terreno.
+Opcion 2: Area de un triangulo.
+Opcion 3: Salir.
+ 1
+Calculo de un terreno cuyo ancho es tres veces el largo.
+ Escriba el ancho del terreno:
+57.83
+
+El area del terreno es de 1114.7697 m^2.                                                       
+\end{verbatim}
+
+\subsection{Implementacion del algoritmo en C}
+\begin{lstlisting}
+/*Problema 1*/
+void terreno (void)
+{
+        float ancho, largo;
+        printf("Calculo de un terreno cuyo ancho es tres veces el largo.\n ");
+        printf("Escriba el ancho del terreno:\n");
+        scanf(" %f", &ancho);
+        largo = ancho / 3;
+        printf("\nEl area del terreno es de %.4f m^2.\n", farea(ancho, largo));
+        printf("\nEl perimetro del terreno es de %.4f m.\n", fperimetro(ancho, largo));
+}
+//area del terreno
+float farea (float ancho, float largo)
+{
+        float area;
+        area = ancho * largo;
+        return area;
+}
+//perimetro del terreno
+float fperimetro (float ancho, float largo)
+{
+        float perimetro;
+        perimetro = 2 * (ancho + largo);
+        return perimetro;
+}
+\end{lstlisting}
+% ---------- PROBLEMA 2 ----------
+\section{Problema 2}
+
+\subsection{Enunciado del problema}
+%Aquí va una breve explicación del programa realizado en lenguaje C.  
+%Máximo 5 líneas explicando qué hace el programa y cómo funciona.
+Diseñe e implemente un algoritmo para calcular el área de un triángulo mediante
+la fórmula:
+\[
+	A = \sqrt{p(p-a)(p-b)(p-c)}
+\]
+donde p es el semiperimetro: 
+\[
+	p = \frac{a + b + c}{2}
+\]
+\subsection{Especificación de las entradas y salidas}
+Entradas: Primer, Segundo y Tercer lado del triangulo.\\
+Salidas: Área del triangulo.
+\subsection{Algoritmo del programa}
+\begin{verbatim}
+PREGUNTAR lado1
+PREGUNTAR lado2
+PREGUNTAR lad3o
+CALCULAR SEMIPERIMETRO p = (a + b + c) / 2
+CALCULAR ÁREA a = [{p * (p-a) * (p - b) * (p - c)}] ^ 1/2
+IMPRIMIR área
+\end{verbatim}
+\subsection{Pruebas de escritorio }
+\begin{verbatim}
+   MENU
+Opcion 1: Calcular el area y perimetro de un terreno.
+Opcion 2: Area de un triangulo.
+Opcion 3: Salir.
+ 2
+Calculo del area de un triangulo por la formula de Heron.
+Lado A:
+47.2
+Lado B:
+88
+Lado C:
+126.9
+El area del triangulo es: 131.0500
+                MENU
+Opcion 1: Calcular el area y perimetro de un terreno.
+Opcion 2: Area de un triangulo.
+Opcion 3: Salir.
+ 3
+Saliendo...
+\end{verbatim}
+
+\subsection{Implementacion del algoritmo en C}
+\begin{lstlisting}
+/*Problema 2*/
+void heron (void)
+{
+        float a, b, c;
+        float smper, area;
+        printf("Calculo del area de un triangulo por la formula de Heron.\n");
+        printf("Lado A:\n"); scanf(" %f", &a);
+        printf("Lado B:\n"); scanf(" %f", &b);
+        printf("Lado C:\n"); scanf(" %f", &c);
+        smper = semiperimetro (a, b, c);
+        area = areatrang (smper, a, b, c);
+        printf("El area del triangulo es: %.4f\n", area);
+}
+//perimetro del triangulo
+float semiperimetro (float a, float b, float c)
+{
+        float sperimetro;
+        sperimetro = (a+b+c)/2;
+        return sperimetro;
+}
+//area del triangulo
+float areatrang (float p, float a, float b, float c)
+{
+        float area, aux;
+        aux = p * (p-a)*(p-b)*(p-c);
+        area = pow (aux, 0.5);
+        return area;
+}
+
+\end{lstlisting}
+
+
+\end{document}
+
