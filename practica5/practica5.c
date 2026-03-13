@@ -3,12 +3,12 @@
 //prototipos
 int numEstudiantes(void);
 void registrarCalificaciones(float calificaciones[], int estudiantes);
-float calpromedio (float calificaciones[], int estudiantes);
-float calificacionalta(float calificaciones[], int estudiantes);
-float calificacionbaja(float calificaciones[], int estudiantes);
-void resultados(float promedio, float calfalta, float calfbaja, int aprobados, int reprobados);
-int aprobados (float calificaciones[], int estudiantes);
-int reprobados (float calificaciones[], int estudiantes);
+float calcularPromedio (float calificaciones[], int n);
+float obtenerMayor(float calificaciones[], int n);
+float obtenerMenor(float calificaciones[], int n);
+int contarAprobados (float calificaciones[], int n);
+int contarReprobados (float calificaciones[], int n);
+void mostrarResultados(float promedio, float mayor, float menor, int aprobados, int reprobados);
 float validar(float min, float max);
 void cleanbbf (void);
 //main
@@ -28,13 +28,13 @@ int main(void)
 		//pedir la calificacion final de cada estudiante
 		registrarCalificaciones(calificaciones, estudiantes);
 		//calcular estadisticas
-		promedio = calpromedio(calificaciones, estudiantes);
-		calfalta = calificacionalta(calificaciones, estudiantes);
-		calfbaja = calificacionbaja(calificaciones, estudiantes);
-		estudiantesap = aprobados(calificaciones, estudiantes);
-		estudiantesrep = reprobados(calificaciones, estudiantes);
+		promedio = calcularPromedio(calificaciones, estudiantes);
+		calfalta = obtenerMayor(calificaciones, estudiantes);
+		calfbaja = obtenerMenor(calificaciones, estudiantes);
+		estudiantesap = contarAprobados(calificaciones, estudiantes);
+		estudiantesrep = contarReprobados(calificaciones, estudiantes);
 		//mostra: Promedio grupal, Cal mas alta y baja, Num estudiantes aprobados y reprobados.
-		resultados (promedio, calfalta, calfbaja, estudiantesap, estudiantesrep);	
+		mostrarResultados (promedio, calfalta, calfbaja, estudiantesap, estudiantesrep);	
 	}
 	return 0;
 }
@@ -61,20 +61,20 @@ void registrarCalificaciones(float calificaciones[], int estudiantes)
 }
 /*TAREA 3*/
 //Promedio del grupo
-float calpromedio (float calificaciones[], int estudiantes)
+float calcularPromedio (float calificaciones[], int n)
 {
 	float output=0;
-	for(int i=0; i < estudiantes; i++)
+	for(int i=0; i < n; i++)
 	{
 		output += calificaciones[i];
 	}
-	return (output / estudiantes);
+	return (output / n);
 }
 //Calificacion mas alta
-float calificacionalta(float calificaciones[], int estudiantes)
+float obtenerMayor(float calificaciones[], int n)
 {
 	float alta=calificaciones[0];
-	for(int i=0; i<estudiantes; i++)
+	for(int i=0; i<n; i++)
 	{
 		if(calificaciones[i]>alta)
 			alta = calificaciones[i];
@@ -82,10 +82,10 @@ float calificacionalta(float calificaciones[], int estudiantes)
 	return alta;
 }
 //Calificacion mas baja
-float calificacionbaja(float calificaciones[], int estudiantes)
+float obtenerMenor(float calificaciones[], int n)
 {
 	float baja=calificaciones[0];
-	for(int i=0; i<estudiantes; i++)
+	for(int i=0; i<n; i++)
 	{
 		if(calificaciones[i] < baja)
 			baja = calificaciones[i];
@@ -93,10 +93,10 @@ float calificacionbaja(float calificaciones[], int estudiantes)
 	return baja;
 }
 //Numero de estudiantes aprobados (>=60)
-int aprobados(float calificaciones[], int estudiantes)
+int contarAprobados(float calificaciones[], int n)
 {
 	float count=0;;
-	for(int i=0; i<estudiantes; i++)
+	for(int i=0; i<n; i++)
 	{
 		if(calificaciones[i] >= 60)
 			count ++;
@@ -104,10 +104,10 @@ int aprobados(float calificaciones[], int estudiantes)
 	return count;
 }	
 //Numero de estudiantes reprobados (<= 60)
-int reprobados(float calificaciones[], int estudiantes)
+int contarReprobados(float calificaciones[], int n)
 {
 	float count=0;;
-	for(int i=0; i<estudiantes; i++)
+	for(int i=0; i<n; i++)
 	{
 		if(calificaciones[i] < 60)
 			count ++;
@@ -115,7 +115,7 @@ int reprobados(float calificaciones[], int estudiantes)
 	return count;
 }	
 /*TAREA 4: MOSTAR RESULTADOS*/
-void resultados (float promedio, float calfalta, float calfbaja, int aprobados, int reprobados)
+void mostrarResultados (float promedio, float mayor, float menor, int aprobados, int reprobados)
 {
 	int opc;
 	do{
@@ -126,8 +126,8 @@ void resultados (float promedio, float calfalta, float calfbaja, int aprobados, 
 		{
 			case 1:	printf("Promedio grupal: %.2f\n", promedio);
 			       	break;
-			case 2: printf("Calficacion mas alta: %.2f\n", calfalta);
-				printf("Calificacion mas baja: %.2f\n", calfbaja);
+			case 2: printf("Calficacion mas alta: %.2f\n", mayor);
+				printf("Calificacion mas baja: %.2f\n", menor);
 				break;
 			case 3: printf("Cantidad de aprobados: %d\n", aprobados);
 				printf("Cantidad de reprobados: %d\n", reprobados);
