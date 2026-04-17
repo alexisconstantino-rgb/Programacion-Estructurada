@@ -4,7 +4,9 @@ long fibonacci(int n);
 
 int main(void)
 {
-	printf("El fibonacci de 6 es: %li",fibonacci(6));//deberia salir 8
+	printf("El fibonacci de 6 es: %li\n",fibonacci(6));//deberia salir 8
+	printf("El fibonacci de 10 es: %li\n", fibonacci(10));
+	printf("El fibonacci de 4 es: %li\n", fibonacci(4));
 	return 0;
 }
 
