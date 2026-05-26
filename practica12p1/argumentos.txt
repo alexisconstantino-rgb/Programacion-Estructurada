@@ -1,0 +1,4 @@
+En C, los argumentos en la línea de comandos permiten pasar información a un programa
+directamente al momento de ejecutarlo, sin necesidad de interacción adicional con el usuario.
+Son muy usados para programas de consola, procesamiento de archivos y scripts
+automatizados.
